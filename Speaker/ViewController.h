@@ -11,6 +11,8 @@
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *lblSentence;
+@property (weak, nonatomic) IBOutlet UILabel *lblLanguage;
+@property (weak, nonatomic) IBOutlet UILabel *lblVoice;
 
 @end
 

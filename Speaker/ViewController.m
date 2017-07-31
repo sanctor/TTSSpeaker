@@ -56,7 +56,7 @@
         NSString *sentence = self.sentences[self.currentSpeechIndex];
         
         AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:sentence];
-        utterance.rate = 1.5;
+//        utterance.rate = 0.8;
         
         NSString *isoLangCode = (NSString *)CFBridgingRelease(CFStringTokenizerCopyBestStringLanguage((CFStringRef)sentence, CFRangeMake(0, sentence.length)));
         
@@ -64,7 +64,12 @@
             AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:isoLangCode];
             if (voice) {
                 NSLog(@"Voice: %@ - %@", voice.name, voice.language);
+                self.lblLanguage.text = [NSString stringWithFormat:@"%@ : %@", isoLangCode, voice.language];
+                self.lblVoice.text = voice.name;
                 utterance.voice = voice;
+            } else {
+                self.lblLanguage.text = isoLangCode;
+                self.lblVoice.text = @"No voice";
             }
         }
         
